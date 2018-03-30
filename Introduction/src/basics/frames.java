@@ -1,0 +1,27 @@
+package basics;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class frames {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver","C://Automation//chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://jqueryui.com/droppable/");
+		//Here we just have one frame in the page so directly switching it otherwise we have to count the frames on the page and then loop it.
+		driver.switchTo().frame(driver.findElement(By.cssSelector("iframe[class='demo-frame']")));
+		//driver.findElement(By.id(draggable)).
+		Actions a = new Actions(driver);
+		WebElement source = driver.findElement(By.id("draggable"));
+		WebElement target = driver.findElement(By.id("droppable"));
+		a.dragAndDrop(source, target).build().perform();
+		
+		
+	}
+
+}
